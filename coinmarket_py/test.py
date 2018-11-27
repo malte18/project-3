@@ -23,19 +23,19 @@ headers = {
 # TODO: Section: get all data concerning one Coin
 r = requests.get(url, headers=headers)
 
+def test_call():
+    if r.status_code == 200:
+        response = json.loads(r.text)
+        print(response)
 
-if r.status_code == 200:
-    response = json.loads(r.text)
-    print(response)
+        # lastUpdated = response['data']['BTC']['quote']['USD']['last_updated']
 
-    # lastUpdated = response['data']['BTC']['quote']['USD']['last_updated']
+        # timestamp = dt.datetime.strptime(lastUpdated, '%Y-%m-%dT%H:%M:%S.000Z')
 
-    # timestamp = dt.datetime.strptime(lastUpdated, '%Y-%m-%dT%H:%M:%S.000Z')
+        # print(timestamp)
 
-    # print(timestamp)
-
-else:
-    print(" %s is not a valid url " %url_2)
+    else:
+        print(" %s is not a valid url " %url_2)
 
 
 
