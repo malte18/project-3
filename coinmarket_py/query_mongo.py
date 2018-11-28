@@ -14,7 +14,7 @@ query_1 = {"data": {"BTC": {"id": 1}}}
 doc = collection.find({}, {"data": {"BTC": {"id": 1}}})
 doc_2 = collection.find({}, {"data.BTC.quote.USD.price": 1})
 doc_3 = collection.find({}, {"data.BTC.quote.USD.percent_change_24h": 1})
-doc_4 = collection.find({"data.BTC.quote.USD.price": {"$gt": 3699}})
+doc_4 = collection.distinct("data.BTC.quote.USD.price")  # {"$gt": 3699}
 # doc_4 = collection.distinct({"data.BTC.quote.USD.price": {$gt: 3697}}, {"data.BTC.quote.USD.price": 1})
 
 def return_list():
@@ -29,16 +29,33 @@ def return_list():
 
         # print(x)
 
-
-def return_json():
-    for y in doc_4:
-        list = []
-
-        print(y["data"]["BTC"]["quote"]["USD"]["price"])
-
-        # print(list)
+# def return_json_1():
+#     for y in doc_4:
+#         print(y["data"]["BTC"]["quote"]["USD"]["price"])
 
 
-return_json()
+def return_json_2():
+    current_price = doc_4[-1]
+    price_before = doc_4[-2]
+    spread = current_price - price_before
+    current_spread = spread/80
+    spread_needed = 80 - spread
+    price_goal = doc_4[-1] + spread_needed
+    price_increase_needed = current_price/price_goal
+
+
+
+    if spread > 80:
+        print("invest")
+    else:
+        print(" \n We do not advice you to invest right now. \n \n Here are the facts why: \n \n")
+        print(" 1.) The current price of BTC is at {} \n ".format(doc_4[-1]))
+        print(" 2.) the price needs to increas by {}$ \n".format(spread_needed))
+        print(" 3.) dcrypt propses an investment once the price is at {} \n".format(price_goal))
+        print(" 4.) This means that the price has to increase by {}% \n".format(price_increase_needed))
+
+
+# return_json_1()
+return_json_2()
 # for y in doc_3:
 #     print(y['price'])
