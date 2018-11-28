@@ -68,7 +68,17 @@ def test_call():
         print(" %s is not a valid url " %url_2)
 
 
-schedule.every(15).seconds.do(test_call)
+
+@with_logging
+def print_time():
+    print(time.time())
+
+
+schedule.every(1).minutes.do(print_time)
+
+
+# TODO: section: execute API call every "minutes"
+schedule.every(10).minutes.do(test_call)
 
 while 1:
     schedule.run_pending()

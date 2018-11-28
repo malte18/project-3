@@ -48,9 +48,9 @@ if request.content != '':
    print(response)
 
 
-
-
 # TODO: 1.) write simple script to insert jsonobject into mongodb
 # TODO: 2.) read data from database
 # TODO: 3.) think about the structure of your *fucking* algorithm
 # TODO: 4.) derive simple conclusions
+
+
