@@ -77,7 +77,7 @@ def print_time():
 schedule.every(1).minutes.do(print_time)
 
 
-# TODO: section: execute API call every "minutes"
+# TODO: Section: execute API call every "minutes"
 schedule.every(10).minutes.do(test_call)
 # schedule.every(15).seconds.do(test_call)
 
