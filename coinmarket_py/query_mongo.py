@@ -83,3 +83,5 @@ while 1:
 # for y in doc_3:
 # print(y['price'])
 
+
+# TODO: 1.) how is the actual % of invest or not accounted for? 2.) how fast/often to make suggestions?
